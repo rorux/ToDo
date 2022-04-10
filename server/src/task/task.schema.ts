@@ -33,9 +33,6 @@ export const TaskSchema = SchemaFactory.createForClass(Task);
 export class CreateTaskInput {
   @Field()
   name: string;
-
-  @Field()
-  complete: boolean;
 }
 
 @InputType()
@@ -45,9 +42,6 @@ export class UpdateTaskInput {
 
   @Field()
   name: string;
-
-  @Field()
-  complete: boolean;
 }
 
 @InputType()
