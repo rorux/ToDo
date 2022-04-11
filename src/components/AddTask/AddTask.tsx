@@ -1,26 +1,38 @@
 import React, { useCallback, useState } from "react";
+import { useMutation, useQuery } from "@apollo/client";
 import Grid from "@mui/material/Grid";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
+import { CREATE_TASK } from "../../mutations/task";
+import { TPropsAddTask } from "./types";
 
-const AddTask = () => {
+const AddTask = ({ refetch }: TPropsAddTask) => {
   const [newTaskName, setNewTaskName] = useState<string>("");
+  const [newTask] = useMutation(CREATE_TASK);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setNewTaskName(event.target.value);
   };
 
-  const addNewTask = useCallback(() => {
-    console.log(newTaskName);
+  const addNewTask = useCallback(async () => {
+    await newTask({
+      variables: {
+        input: {
+          name: newTaskName,
+        },
+      },
+    });
+    refetch();
     setNewTaskName("");
-  }, [newTaskName]);
+  }, [newTaskName, newTask, refetch]);
 
   return (
     <>
       <Grid item xs={10}>
         <TextField
           onChange={handleChange}
+          value={newTaskName}
           id="outlined-basic"
           label="Введите новое задание..."
           size="small"

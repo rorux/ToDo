@@ -14,10 +14,10 @@ import { TaskModule } from "./task/task.module";
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       autoSchemaFile: "schema.gql",
-      cors: {
-        origin: "http://localhost:3000",
-        credentials: true,
-      },
+      // cors: {
+      //   origin: "http://localhost:3000",
+      //   credentials: true,
+      // },
     }),
     MongooseModule.forRoot(process.env.MONGODB_URI, {
       useNewUrlParser: true,

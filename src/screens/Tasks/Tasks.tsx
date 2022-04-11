@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useMutation, useQuery } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import CssBaseline from "@mui/material/CssBaseline";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
@@ -13,7 +13,7 @@ import { TTask } from "./types";
 import Task from "../../components/Task";
 import AddTask from "../../components/AddTask";
 
-function PageLayout() {
+function Tasks() {
   const { data, loading, error, refetch } = useQuery(GET_ALL_TASKS);
 
   const [tasks, setTasks] = useState<TTask[]>([]);
@@ -47,7 +47,7 @@ function PageLayout() {
             Список дел
           </Typography>
           <Grid container spacing={2}>
-            <AddTask />
+            <AddTask refetch={refetch} />
             {loading ? (
               <CircularProgress />
             ) : (
@@ -89,4 +89,4 @@ function PageLayout() {
   );
 }
 
-export default PageLayout;
+export default Tasks;
