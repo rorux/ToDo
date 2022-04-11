@@ -29,6 +29,7 @@ export class TaskService {
   async updateTask(task: UpdateTaskInput) {
     const findTask = await this.taskModel.findOne({ _id: task._id });
     findTask.name = task.name;
+    findTask.complete = task.complete;
     findTask.updatedAt = new Date();
     return await this.taskModel.create(findTask);
   }

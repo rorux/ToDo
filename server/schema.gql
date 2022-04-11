@@ -41,4 +41,5 @@ input CreateTaskInput {
 input UpdateTaskInput {
   _id: ID!
   name: String!
+  complete: Boolean!
 }

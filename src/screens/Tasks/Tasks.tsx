@@ -14,7 +14,7 @@ import Task from "../../components/Task";
 import AddTask from "../../components/AddTask";
 
 function Tasks() {
-  const { data, loading, error, refetch } = useQuery(GET_ALL_TASKS);
+  const { data, loading, refetch } = useQuery(GET_ALL_TASKS);
 
   const [tasks, setTasks] = useState<TTask[]>([]);
 
@@ -51,7 +51,9 @@ function Tasks() {
             {loading ? (
               <CircularProgress />
             ) : (
-              tasks.map((task) => <Task task={task} key={task._id} />)
+              tasks.map((task) => (
+                <Task task={task} refetch={refetch} key={task._id} />
+              ))
             )}
 
             <Grid

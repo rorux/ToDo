@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from "react";
-import { useMutation, useQuery } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import Grid from "@mui/material/Grid";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import TextField from "@mui/material/TextField";
@@ -12,19 +12,21 @@ const AddTask = ({ refetch }: TPropsAddTask) => {
   const [newTask] = useMutation(CREATE_TASK);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setNewTaskName(event.target.value);
+    setNewTaskName(event.target.value.trim());
   };
 
   const addNewTask = useCallback(async () => {
-    await newTask({
-      variables: {
-        input: {
-          name: newTaskName,
+    if (newTaskName) {
+      await newTask({
+        variables: {
+          input: {
+            name: newTaskName,
+          },
         },
-      },
-    });
-    refetch();
-    setNewTaskName("");
+      });
+      refetch();
+      setNewTaskName("");
+    }
   }, [newTaskName, newTask, refetch]);
 
   return (

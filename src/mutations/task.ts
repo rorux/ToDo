@@ -7,3 +7,11 @@ export const CREATE_TASK = gql`
     }
   }
 `;
+
+export const UPDATE_TASK = gql`
+  mutation updateTask($input: UpdateTaskInput!) {
+    updateTask(input: $input) {
+      name
+    }
+  }
+`;

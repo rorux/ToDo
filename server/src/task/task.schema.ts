@@ -42,6 +42,9 @@ export class UpdateTaskInput {
 
   @Field()
   name: string;
+
+  @Field()
+  complete: boolean;
 }
 
 @InputType()
