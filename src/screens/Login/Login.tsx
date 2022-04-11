@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
@@ -12,6 +12,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Formik, Form } from "formik";
 import TextFieldWrapper from "../../components/formsUI/TextField";
 import { authTrueAction } from "../../store/actions";
+import AuthSnackbar from "../../components/AuthSnackbar";
 
 const theme = createTheme();
 
@@ -26,15 +27,23 @@ type TValues = {
 };
 
 export default function Login() {
+  const [error, setError] = useState<string>("");
   const dispatch = useDispatch();
 
   const handleSubmit = (values: TValues): void => {
-    console.log(values);
-    dispatch(authTrueAction());
+    if (
+      values.login === process.env.REACT_APP_USER &&
+      values.password === process.env.REACT_APP_PASSWORD
+    ) {
+      dispatch(authTrueAction());
+    } else {
+      setError("Ошибка логина и/или пароля!");
+    }
   };
 
   return (
     <ThemeProvider theme={theme}>
+      {error && <AuthSnackbar message={error} handle={setError} />}
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box

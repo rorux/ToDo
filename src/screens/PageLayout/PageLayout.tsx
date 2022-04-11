@@ -72,7 +72,7 @@ function PageLayout() {
                 }}
               >
                 <Radio value="isNotReady" name="radio-buttons" />
-                <Typography variant="body1" color="#666" sx={{ flexGrow: 1 }}>
+                <Typography variant="body2" color="#666" sx={{ flexGrow: 1 }}>
                   Направить отчет о работе Направить отчет о работе Направить
                   отчет о работе Направить отчет о работе
                 </Typography>
@@ -105,7 +105,7 @@ function PageLayout() {
               >
                 <Radio value="isNotReady" name="radio-buttons" />
                 <Typography
-                  variant="body1"
+                  variant="body2"
                   color="#666"
                   sx={{ textDecoration: "line-through", flexGrow: 1 }}
                 >
