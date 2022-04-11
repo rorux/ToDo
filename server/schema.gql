@@ -36,11 +36,9 @@ type Mutation {
 
 input CreateTaskInput {
   name: String!
-  complete: Boolean!
 }
 
 input UpdateTaskInput {
   _id: ID!
   name: String!
-  complete: Boolean!
 }

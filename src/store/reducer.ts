@@ -1,7 +1,7 @@
 import { IState, TAction, actionTypes } from "./types";
 
 const initialState: IState = {
-  auth: false,
+  auth: true,
 };
 
 export const reducer = (store = initialState, action: TAction) => {

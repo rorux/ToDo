@@ -14,7 +14,7 @@ export class Task {
   @Field()
   name: string;
 
-  @Prop({ required: true })
+  @Prop({ default: false })
   @Field()
   complete: boolean;
 

@@ -8,7 +8,7 @@ import PublicRoute from "./PublicRoute";
 import { ROUTES } from "./types";
 import { selector } from "../store/selectors";
 
-const PageLayout = React.lazy(() => import("../screens/PageLayout"));
+const Tasks = React.lazy(() => import("../screens/Tasks"));
 const Login = React.lazy(() => import("../screens/Login"));
 const NotFound = React.lazy(() => import("../screens/NotFound"));
 
@@ -25,7 +25,7 @@ const Router: React.FC = () => {
       </PublicRoute>
       <PrivateRoute exact authed={authed} path={ROUTES.TASKS}>
         <Suspense fallback={<CircularProgress />}>
-          <PageLayout />
+          <Tasks />
         </Suspense>
       </PrivateRoute>
       <Route path={ROUTES.NOT_FOUND}>
