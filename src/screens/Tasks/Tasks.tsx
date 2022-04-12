@@ -4,7 +4,6 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import Paper from "@mui/material/Paper";
-import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import { CircularProgress } from "@mui/material";
@@ -46,29 +45,24 @@ function Tasks() {
           <Typography variant="h5" align="center" mb={3}>
             Список дел
           </Typography>
+
           <Grid container spacing={2}>
             <AddTask refetch={refetch} />
             {loading ? (
               <CircularProgress />
-            ) : (
+            ) : tasks.length ? (
               tasks.map((task) => (
                 <Task task={task} refetch={refetch} key={task._id} />
               ))
+            ) : (
+              <Typography
+                variant="body2"
+                gutterBottom
+                sx={{ mt: 2, mx: "auto" }}
+              >
+                Пока заданий нет...
+              </Typography>
             )}
-
-            <Grid
-              item
-              xs={12}
-              sx={{
-                display: "flex",
-                justifyContent: "flex-end",
-                my: 1,
-              }}
-            >
-              <Button variant="contained" color="error">
-                Очистить список
-              </Button>
-            </Grid>
           </Grid>
         </Paper>
       </Container>
