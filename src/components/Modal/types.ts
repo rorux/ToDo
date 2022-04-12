@@ -1,12 +1,14 @@
 import React from "react";
 
-export type TConfirmProps = {
+export type TModalProps = {
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  handler: () => void;
+  name: string;
+  handler: (editName: string) => void;
   text: {
     disagree: string;
     agree: string;
     title: string;
+    text: string;
   };
 };

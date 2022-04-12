@@ -6,13 +6,7 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import { TConfirmProps } from "./types";
 
-const Confirm: React.FC<TConfirmProps> = ({
-  open,
-  setOpen,
-  handler,
-  id,
-  text,
-}) => {
+const Confirm: React.FC<TConfirmProps> = ({ open, setOpen, handler, text }) => {
   const [openConfirm, setOpenConfirm] = React.useState(false);
 
   useEffect(() => {
@@ -40,10 +34,8 @@ const Confirm: React.FC<TConfirmProps> = ({
           <DialogContentText>{text.title}</DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button data-test="disagree" onClick={handleClose}>
-            {text.disagree}
-          </Button>
-          <Button data-test="agree" onClick={handlerFunc} autoFocus>
+          <Button onClick={handleClose}>{text.disagree}</Button>
+          <Button onClick={handlerFunc} autoFocus>
             {text.agree}
           </Button>
         </DialogActions>
