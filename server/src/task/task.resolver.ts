@@ -32,7 +32,7 @@ export class TaskResolver {
     return this.taskService.updateTask(input);
   }
 
-  @Query(() => Task)
+  @Mutation(() => Task)
   async deleteTask(@Args("input") { _id }: DeleteTaskInput) {
     return this.taskService.deleteById(_id);
   }

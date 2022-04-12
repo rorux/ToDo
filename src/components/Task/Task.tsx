@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
@@ -8,10 +8,13 @@ import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import { TTaskProps } from "./types";
-import { UPDATE_TASK } from "../../mutations/task";
+import { UPDATE_TASK, REMOVE_TASK } from "../../mutations/task";
+import Confirm from "../Confirm";
 
 const Task = ({ task, refetch }: TTaskProps) => {
+  const [isOpenConfirm, setIsOpenConfirm] = useState<boolean>(false);
   const [updateTask] = useMutation(UPDATE_TASK);
+  const [removeTask] = useMutation(REMOVE_TASK);
 
   const handleComplete = async () => {
     await updateTask({
@@ -20,6 +23,17 @@ const Task = ({ task, refetch }: TTaskProps) => {
           _id: task._id,
           name: task.name,
           complete: !task.complete,
+        },
+      },
+    });
+    refetch();
+  };
+
+  const handleDelete = async () => {
+    await removeTask({
+      variables: {
+        input: {
+          _id: task._id,
         },
       },
     });
@@ -63,11 +77,22 @@ const Task = ({ task, refetch }: TTaskProps) => {
           <IconButton size="small">
             <EditIcon sx={{ color: "#558b2f" }} />
           </IconButton>
-          <IconButton size="small">
+          <IconButton size="small" onClick={() => setIsOpenConfirm(true)}>
             <DeleteIcon sx={{ color: "#ff5722" }} />
           </IconButton>
         </Box>
       </Box>
+      <Confirm
+        open={isOpenConfirm}
+        setOpen={setIsOpenConfirm}
+        handler={handleDelete}
+        id={task._id}
+        text={{
+          disagree: "Отмена",
+          agree: "Удалить",
+          title: "Удалить задание?",
+        }}
+      />
     </Grid>
   );
 };

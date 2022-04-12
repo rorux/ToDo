@@ -18,20 +18,16 @@ scalar DateTime
 type Query {
   tasks: [Task!]!
   findTask(input: FindTaskInput!): Task!
-  deleteTask(input: DeleteTaskInput!): Task!
 }
 
 input FindTaskInput {
   _id: String!
 }
 
-input DeleteTaskInput {
-  _id: String!
-}
-
 type Mutation {
   createTask(input: CreateTaskInput!): Task!
   updateTask(input: UpdateTaskInput!): Task!
+  deleteTask(input: DeleteTaskInput!): Task!
 }
 
 input CreateTaskInput {
@@ -42,4 +38,8 @@ input UpdateTaskInput {
   _id: ID!
   name: String!
   complete: Boolean!
+}
+
+input DeleteTaskInput {
+  _id: String!
 }

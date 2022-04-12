@@ -15,3 +15,11 @@ export const UPDATE_TASK = gql`
     }
   }
 `;
+
+export const REMOVE_TASK = gql`
+  mutation deleteTask($input: DeleteTaskInput!) {
+    deleteTask(input: $input) {
+      name
+    }
+  }
+`;

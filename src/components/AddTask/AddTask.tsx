@@ -12,11 +12,11 @@ const AddTask = ({ refetch }: TPropsAddTask) => {
   const [newTask] = useMutation(CREATE_TASK);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setNewTaskName(event.target.value.trim());
+    setNewTaskName(event.target.value);
   };
 
   const addNewTask = useCallback(async () => {
-    if (newTaskName) {
+    if (newTaskName.trim()) {
       await newTask({
         variables: {
           input: {
